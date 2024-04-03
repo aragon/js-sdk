@@ -67,7 +67,7 @@ export function toMultisigProposal(
     ),
     status: computeProposalStatus(proposal),
     approvals: proposal.approvers.map(
-      (approver) => approver.id.slice(0, 42),
+      (a) => a.approver.address,
     ),
   };
 }
@@ -93,7 +93,7 @@ export function toMultisigProposalListItem(
       summary: metadata.summary,
     },
     approvals: proposal.approvers.map(
-      (approver) => approver.id.slice(0, 42),
+      (a) => a.approver.address,
     ),
     actions: proposal.actions.map(
       (action: SubgraphAction): DaoAction => {

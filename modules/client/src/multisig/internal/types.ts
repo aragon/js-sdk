@@ -4,7 +4,7 @@ export type SubgraphMultisigProposalBase = SubgraphProposalBase & {
   plugin: SubgraphMultisigVotingSettings;
   minApprovals: number;
   approvalReached: boolean;
-  approvers: { id: string }[];
+  approvers: { id: string, approver: { address: string} }[];
   // TODO change on subgraph fix
   // approvers: SubgraphMultisigApproversListItem[];
 };
