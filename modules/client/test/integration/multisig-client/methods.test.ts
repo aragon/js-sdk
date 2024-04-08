@@ -613,7 +613,7 @@ describe("Client Multisig", () => {
         executionDate: Math.round(Date.now() / 1000).toString(),
         executionBlockNumber: "50",
         executionTxHash: TEST_TX_HASH,
-        approvers: [{ id: ADDRESS_ONE }, { id: ADDRESS_TWO }],
+        approvers: [{ id: ADDRESS_ONE, approver: {address: ADDRESS_ONE} }, { id: ADDRESS_TWO, approver: {address: ADDRESS_TWO}}],
         minApprovals: 5,
         plugin: {
           onlyListed: true,
@@ -737,7 +737,7 @@ describe("Client Multisig", () => {
       mockedClient.request.mockResolvedValueOnce({
         multisigProposals: [{
           ...SUBGRAPH_PROPOSAL_BASE,
-          approvers: [{ id: ADDRESS_ONE }, { id: ADDRESS_TWO }],
+          approvers: [{ id: ADDRESS_ONE, approver: { address: ADDRESS_ONE } }, { id: ADDRESS_TWO, approver: { address: ADDRESS_TWO } }],
           plugin: {
             onlyListed: true,
           },
