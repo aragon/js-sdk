@@ -18,6 +18,11 @@ TEMPLATE:
 -->
 
 ## [UPCOMING]
+## [1.23.1]
+
+### Fixed
+- Reorder id creation to match subgraph
+
 ## [1.23.0]
 
 ### Changed

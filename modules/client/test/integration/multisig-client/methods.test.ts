@@ -613,7 +613,7 @@ describe("Client Multisig", () => {
         executionDate: Math.round(Date.now() / 1000).toString(),
         executionBlockNumber: "50",
         executionTxHash: TEST_TX_HASH,
-        approvers: [{ id: ADDRESS_ONE }, { id: ADDRESS_TWO }],
+        approvers: [{ id: `${ADDRESS_ONE}_${ADDRESS_ONE}`, approver: {address: ADDRESS_ONE} }, { id: `${ADDRESS_TWO}_${ADDRESS_ONE}`, approver: {address: ADDRESS_TWO}}],
         minApprovals: 5,
         plugin: {
           onlyListed: true,
@@ -675,7 +675,7 @@ describe("Client Multisig", () => {
         parseInt(subgraphProposal.executionBlockNumber),
       );
       expect(proposal.approvals).toMatchObject(
-        subgraphProposal.approvers.map((approver) => approver.id),
+        subgraphProposal.approvers.map((approver) => approver.approver.address),
       );
       expect(proposal.settings.minApprovals).toBe(
         subgraphProposal.plugin.minApprovals,
@@ -737,7 +737,7 @@ describe("Client Multisig", () => {
       mockedClient.request.mockResolvedValueOnce({
         multisigProposals: [{
           ...SUBGRAPH_PROPOSAL_BASE,
-          approvers: [{ id: ADDRESS_ONE }, { id: ADDRESS_TWO }],
+          approvers: [{ id: `${ADDRESS_ONE}_${ADDRESS_ONE}`, approver: { address: ADDRESS_ONE } }, { id: `${ADDRESS_TWO}_${ADDRESS_ONE}`, approver: { address: ADDRESS_TWO } }],
           plugin: {
             onlyListed: true,
           },
