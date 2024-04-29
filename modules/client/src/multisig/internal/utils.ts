@@ -66,7 +66,7 @@ export function toMultisigProposal(
       },
     ),
     status: computeProposalStatus(proposal),
-    approvals: proposal.approvers.map(
+    approvals: proposal.approvals.map(
       (a) => a.approver.address,
     ),
   };
@@ -92,7 +92,7 @@ export function toMultisigProposalListItem(
       title: metadata.title,
       summary: metadata.summary,
     },
-    approvals: proposal.approvers.map(
+    approvals: proposal.approvals.map(
       (a) => a.approver.address,
     ),
     actions: proposal.actions.map(

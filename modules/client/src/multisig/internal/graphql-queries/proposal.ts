@@ -29,8 +29,10 @@ query MultisigProposal($proposalId: ID!) {
     executed
     approvalReached
     isSignaling
-    approvers(first: 1000){
-      id
+    approvals(first: 1000){
+      approver{
+        address
+      }
     }
   }
 }
@@ -48,14 +50,16 @@ query MultisigProposals($where: MultisigProposal_filter!, $limit:Int!, $skip: In
     executed
     approvalReached
     isSignaling
-    approvals
+    approvalCount
     startDate
     endDate
     executionDate
     executionBlockNumber
     creationBlockNumber
-    approvers {
-      id
+    approvals(first: 1000){
+      approver{
+        address
+      }
     }
     actions {
       to
