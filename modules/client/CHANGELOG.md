@@ -18,6 +18,11 @@ TEMPLATE:
 -->
 
 ## [UPCOMING]
+## [1.23.2]
+
+### Changed
+- Update subgraph queries to version 1.4.2 of subgraph
+
 ## [1.23.1]
 
 ### Fixed
