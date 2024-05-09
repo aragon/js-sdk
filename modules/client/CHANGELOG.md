@@ -18,6 +18,9 @@ TEMPLATE:
 -->
 
 ## [UPCOMING]
+
+- Added `metadataHash` field to proposal and dao objects.
+
 ## [1.23.2]
 
 ### Changed

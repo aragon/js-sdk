@@ -199,6 +199,7 @@ export type ProposalBase = {
   };
   creatorAddress: string;
   metadata: ProposalMetadata;
+  metadataHash: string;
   startDate: Date;
   endDate: Date;
   creationDate: Date;
@@ -219,6 +220,7 @@ export type ProposalListItemBase = {
   };
   creatorAddress: string;
   metadata: ProposalMetadataSummary;
+  metadataHash: string;
   startDate: Date;
   endDate: Date;
   status: ProposalStatus;

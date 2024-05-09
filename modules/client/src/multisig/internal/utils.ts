@@ -45,6 +45,7 @@ export function toMultisigProposal(
       resources: metadata.resources,
       media: metadata.media,
     },
+    metadataHash: proposal.metadata,
     settings: {
       onlyListed: proposal.plugin.onlyListed,
       minApprovals: proposal.minApprovals,
@@ -92,6 +93,7 @@ export function toMultisigProposalListItem(
       title: metadata.title,
       summary: metadata.summary,
     },
+    metadataHash: proposal.metadata,
     approvals: proposal.approvals.map(
       (a) => a.approver.address,
     ),

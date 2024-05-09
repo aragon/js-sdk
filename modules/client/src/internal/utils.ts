@@ -140,6 +140,7 @@ export function toDaoDetails(
       avatar: metadata.avatar || undefined,
       links: metadata.links,
     },
+    metadataHash: dao.metadata,
     creationDate: new Date(parseInt(dao.createdAt) * 1000),
     // TODO update when new subgraph schema is deployed
     // filter out plugins that are not applied
@@ -176,6 +177,7 @@ export function toDaoListItem(
       description: metadata.description,
       avatar: metadata.avatar || undefined,
     },
+    metadataHash: dao.metadata,
     plugins: dao.plugins.filter(
       (plugin) =>
         plugin.appliedPreparation && plugin.appliedVersion &&

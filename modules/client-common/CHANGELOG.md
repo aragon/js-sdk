@@ -19,6 +19,11 @@ TEMPLATE:
 
 ## [UPCOMING]
 
+- Added `metadataHash` field to proposal and dao objects.
+
+## [1.15.0]
+- Added `metadataHash` field to proposal and dao objects.
+
 ### Added
 
 - `getDefaultIpfsNodes` function to get the default IPFS nodes for a network
