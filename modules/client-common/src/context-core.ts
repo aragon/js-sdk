@@ -16,15 +16,19 @@ import {
   UnsupportedProtocolError,
 } from "./errors";
 import {
-  ContractNames,
+  FrameworkContractsNames,
   getNetworkDeploymentForVersion,
   getNetworkNameByAlias,
+  NonFrameworkContractsNames,
   SupportedVersions,
 } from "@aragon/osx-commons-configs";
 
 const DEFAULT_GAS_FEE_ESTIMATION_FACTOR = 0.625;
 const supportedProtocols = ["https:"];
-const contractNames = Object.values(ContractNames);
+const contractNames = [
+  ...Object.values(FrameworkContractsNames),
+  ...Object.values(NonFrameworkContractsNames),
+] as (FrameworkContractsNames | NonFrameworkContractsNames)[];
 if (typeof process !== "undefined" && process?.env?.TESTING) {
   supportedProtocols.push("http:");
 }
@@ -130,7 +134,10 @@ export abstract class ContextCore {
         }
         // custom check for ensRegistryAddress
         // set the ensRegistryAddress to the network.ensAddress
-        if (contractName === ContractNames.ENS_REGISTRY && !contractAddress) {
+        if (
+          contractName === NonFrameworkContractsNames.ENS_REGISTRY &&
+          !contractAddress
+        ) {
           contractAddress = this.network.ensAddress;
         }
         if (contractAddress) {
@@ -225,7 +232,9 @@ export abstract class ContextCore {
     return this.state.graphql;
   }
 
-  public getAddress(contractName: ContractNames): string {
+  public getAddress(
+    contractName: FrameworkContractsNames | NonFrameworkContractsNames,
+  ): string | undefined {
     return this.state[contractName];
   }
 

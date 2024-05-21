@@ -57,7 +57,7 @@ export class AddresslistVotingClientEncoding extends ClientCore
       ],
     );
     const repoAddress = contracts[aragonNetwork][SupportedVersions.V1_3_0]
-      ?.AddresslistVotingRepoProxy.address;
+      ?.AddresslistVotingRepoProxy?.address;
     if (!repoAddress) {
       throw new Error("AddresslistVotingRepoProxy address not found");
     }

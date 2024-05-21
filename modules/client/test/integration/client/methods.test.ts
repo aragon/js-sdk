@@ -96,8 +96,8 @@ import {
   toSubgraphActions,
 } from "../../../src/internal/utils";
 import {
-  ContractNames,
   contracts,
+  FrameworkContractsNames,
   NetworkDeployment,
   SupportedVersions,
 } from "@aragon/osx-commons-configs";
@@ -2030,7 +2030,7 @@ describe("Client", () => {
       });
       it("Should return true for a valid update", async () => {
         const implementationAddress = await client.methods.getDaoImplementation(
-          client.web3.getAddress(ContractNames.DAO_FACTORY),
+          client.web3.getAddress(FrameworkContractsNames.DAO_FACTORY),
         );
         upgradeToAndCallAction = client.encoding.upgradeToAndCallAction(
           daoAddressV1,
@@ -2060,7 +2060,7 @@ describe("Client", () => {
       });
       it("Should PROPOSAL_NOT_FOUND when the proposal is null", async () => {
         const implementationAddress = await client.methods.getDaoImplementation(
-          client.web3.getAddress(ContractNames.DAO_FACTORY),
+          client.web3.getAddress(FrameworkContractsNames.DAO_FACTORY),
         );
         upgradeToAndCallAction = client.encoding.upgradeToAndCallAction(
           daoAddressV1,

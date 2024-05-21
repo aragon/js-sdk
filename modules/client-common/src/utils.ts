@@ -45,7 +45,7 @@ import {
 } from "./errors";
 import { Zero } from "@ethersproject/constants";
 import {
-  ContractNames,
+  FrameworkContractsNames,
   getNetworkAlias,
   getNetworkByChainId,
   getNetworkByNameOrAlias,
@@ -180,7 +180,7 @@ export async function prepareGenericInstallationEstimation(
     throw new UnsupportedNetworkError(networkName);
   }
   const pspContract = PluginSetupProcessor__factory.connect(
-    deployment[ContractNames.PLUGIN_SETUP_PROCESSOR].address,
+    deployment[FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR].address,
     provider,
   );
 

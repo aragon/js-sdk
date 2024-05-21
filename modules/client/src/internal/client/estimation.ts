@@ -42,7 +42,7 @@ import {
   DepositEthSchema,
   SetAllowanceSchema,
 } from "../schemas";
-import { ContractNames } from "@aragon/osx-commons-configs";
+import { FrameworkContractsNames } from "@aragon/osx-commons-configs";
 
 /**
  * Estimation module the SDK Generic Client
@@ -66,7 +66,7 @@ export class ClientEstimation extends ClientCore implements IClientEstimation {
     const provider = this.web3.getProvider();
 
     const daoInstance = DAOFactory__factory.connect(
-      this.web3.getAddress(ContractNames.DAO_FACTORY),
+      this.web3.getAddress(FrameworkContractsNames.DAO_FACTORY),
       provider,
     );
     const pluginInstallationData: DAOFactory.PluginSettingsStruct[] = [];
@@ -188,7 +188,7 @@ export class ClientEstimation extends ClientCore implements IClientEstimation {
     return await prepareGenericUpdateEstimation(this.web3, this.graphql, {
       ...params,
       pluginSetupProcessorAddress: this.web3.getAddress(
-        ContractNames.PLUGIN_SETUP_PROCESSOR,
+        FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR,
       ),
     });
   }

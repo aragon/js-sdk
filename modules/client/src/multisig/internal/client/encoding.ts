@@ -62,9 +62,8 @@ export class MultisigClientEncoding extends ClientCore
         ],
       ],
     );
-    const repoAddress =
-      contracts[aragonNetwork][SupportedVersions.V1_3_0]?.MultisigRepoProxy
-        .address;
+    const repoAddress = contracts[aragonNetwork][SupportedVersions.V1_3_0]
+      ?.MultisigRepoProxy?.address;
     if (!repoAddress) {
       throw new Error("AddresslistVotingRepoProxy address not found");
     }

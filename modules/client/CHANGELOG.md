@@ -19,6 +19,10 @@ TEMPLATE:
 
 ## [UPCOMING]
 
+- Add support for zkSync sepolia network
+
+## [1.23.5]
+
 - Make `metadataHash` optional in proposal and dao objects.
 
 ## [1.23.4]

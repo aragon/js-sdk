@@ -160,8 +160,8 @@ import {
   PluginQuerySchema,
 } from "../schemas";
 import {
-  ContractNames,
   contracts,
+  FrameworkContractsNames,
   SupportedVersions,
 } from "@aragon/osx-commons-configs";
 
@@ -176,7 +176,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
     yield* prepareGenericInstallation(this.web3, {
       ...params,
       pluginSetupProcessorAddress: this.web3.getAddress(
-        ContractNames.PLUGIN_SETUP_PROCESSOR,
+        FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR,
       ),
     });
   }
@@ -194,7 +194,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
     const signer = this.web3.getConnectedSigner();
 
     const daoFactoryInstance = DAOFactory__factory.connect(
-      this.web3.getAddress(ContractNames.DAO_FACTORY),
+      this.web3.getAddress(FrameworkContractsNames.DAO_FACTORY),
       signer,
     );
 
@@ -618,7 +618,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
     );
     // connect to psp contract
     const pspContract = PluginSetupProcessor__factory.connect(
-      this.web3.getAddress(ContractNames.PLUGIN_SETUP_PROCESSOR),
+      this.web3.getAddress(FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR),
       signer,
     );
     const tx = await pspContract.prepareUninstallation(
@@ -686,7 +686,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
       {
         ...params,
         pluginSetupProcessorAddress: this.web3.getAddress(
-          ContractNames.PLUGIN_SETUP_PROCESSOR,
+          FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR,
         ),
       },
     );
@@ -768,7 +768,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
    *     - limit = 10
    *     - skip = 0
    *     - direction = SortDirection.ASC
-   *     - sortBy = DaoSortBy.CREATED_AT   
+   *     - sortBy = DaoSortBy.CREATED_AT
    * @return {Promise<DaoListItem[]>}
    * @memberof ClientMethods
    */
@@ -830,7 +830,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
    *     - limit = 10
    *     - skip = 0
    *     - direction = SortDirection.ASC
-   *     - sortBy = AssetBalanceSortBy.LAST_UPDATED   
+   *     - sortBy = AssetBalanceSortBy.LAST_UPDATED
    * @return {(Promise<AssetBalance[] | null>)}
    * @memberof ClientMethods
    */
@@ -896,7 +896,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
    *     - limit = 10
    *     - skip = 0
    *     - direction = SortDirection.ASC
-   *     - sortBy = TransferSortBy.CREATED_AT   
+   *     - sortBy = TransferSortBy.CREATED_AT
    * @return {(Promise<Transfer[] | null>)}
    * @memberof ClientMethods
    */
@@ -1206,7 +1206,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
     return validateUpdatePluginProposalActions(
       daoActions,
       iproposal.dao.id,
-      this.web3.getAddress(ContractNames.PLUGIN_SETUP_PROCESSOR),
+      this.web3.getAddress(FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR),
       this.graphql,
       this.ipfs,
     );
@@ -1258,7 +1258,9 @@ export class ClientMethods extends ClientCore implements IClientMethods {
       };
     }
     // get implementation address, use latest version as default
-    let daoFactoryAddress = this.web3.getAddress(ContractNames.DAO_FACTORY);
+    let daoFactoryAddress = this.web3.getAddress(
+      FrameworkContractsNames.DAO_FACTORY,
+    );
     if (version) {
       // if version is specified get the dao factory address from the live contracts
       daoFactoryAddress =
