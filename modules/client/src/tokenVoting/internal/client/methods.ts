@@ -114,8 +114,9 @@ import { abi as ERC165_ABI } from "@openzeppelin/contracts/build/contracts/ERC16
 import { Contract } from "@ethersproject/contracts";
 import { AddressZero } from "@ethersproject/constants";
 import {
-  ContractNames,
+  FrameworkContractsNames,
   getNetworkNameByAlias,
+  NonFrameworkContractsNames,
 } from "@aragon/osx-commons-configs";
 
 /**
@@ -288,12 +289,14 @@ export class TokenVotingClientMethods extends ClientCore
     }
     yield* prepareGenericInstallation(this.web3, {
       daoAddressOrEns: params.daoAddressOrEns,
-      pluginRepo: this.web3.getAddress(ContractNames.TOKEN_VOTING_REPO_PROXY),
+      pluginRepo: this.web3.getAddress(
+        NonFrameworkContractsNames.TOKEN_VOTING_REPO_PROXY,
+      ),
       version: params.versionTag,
       installationAbi: INSTALLATION_ABI,
       installationParams: tokenVotingInitParamsToContract(params.settings),
       pluginSetupProcessorAddress: this.web3.getAddress(
-        ContractNames.PLUGIN_SETUP_PROCESSOR,
+        FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR,
       ),
     });
   }
@@ -309,11 +312,13 @@ export class TokenVotingClientMethods extends ClientCore
   ): AsyncGenerator<PrepareUpdateStepValue> {
     yield* prepareGenericUpdate(this.web3, this.graphql, {
       ...params,
-      pluginRepo: this.web3.getAddress(ContractNames.TOKEN_VOTING_REPO_PROXY),
+      pluginRepo: this.web3.getAddress(
+        NonFrameworkContractsNames.TOKEN_VOTING_REPO_PROXY,
+      ),
       updateAbi: UPDATE_ABI[params.newVersion.build] ||
         params.updateAbi || [],
       pluginSetupProcessorAddress: this.web3.getAddress(
-        ContractNames.PLUGIN_SETUP_PROCESSOR,
+        FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR,
       ),
     });
   }
@@ -489,7 +494,7 @@ export class TokenVotingClientMethods extends ClientCore
    *     - limit = 10
    *     - skip = 0
    *     - direction = SortDirection.ASC
-   *     - sortBy = MembersSortBy.ADDRESS   
+   *     - sortBy = MembersSortBy.ADDRESS
    * @return {Promise<string[]>}
    * @memberof TokenVotingClientMethods
    */

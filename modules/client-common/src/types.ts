@@ -1,4 +1,7 @@
-import { ContractNames } from "@aragon/osx-commons-configs";
+import {
+  FrameworkContractsNames,
+  NonFrameworkContractsNames,
+} from "@aragon/osx-commons-configs";
 import {
   GraphQLContextParams,
   GraphQLContextState,
@@ -20,7 +23,10 @@ export type ContextState =
 
 export type OverriddenState =
   & {
-    [key in ContractNames]: boolean;
+    [key in FrameworkContractsNames]: boolean;
+  }
+  & {
+    [key in NonFrameworkContractsNames]: boolean;
   }
   & {
     gasFeeEstimationFactor: boolean;

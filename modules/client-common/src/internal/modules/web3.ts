@@ -15,8 +15,9 @@ import {
   UnsupportedNetworkError,
 } from "../../errors";
 import {
-  ContractNames,
+  FrameworkContractsNames,
   getNetworkByAlias,
+  NonFrameworkContractsNames,
   SupportedNetworks,
 } from "@aragon/osx-commons-configs";
 export class Web3Module implements IClientWeb3Core {
@@ -139,7 +140,9 @@ export class Web3Module implements IClientWeb3Core {
   }
 
   /** FRAMEWORK ADDRESSES */
-  public getAddress(addressName: ContractNames): string {
+  public getAddress(
+    addressName: FrameworkContractsNames | NonFrameworkContractsNames,
+  ): string {
     const address = this.context.getAddress(addressName);
     if (!address || !isAddress(address)) {
       throw new InvalidAddressError();

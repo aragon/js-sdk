@@ -2,11 +2,17 @@ import { Signer } from "@ethersproject/abstract-signer";
 import { JsonRpcProvider, Network, Networkish } from "@ethersproject/providers";
 import { Client as IpfsClient } from "@aragon/sdk-ipfs";
 import { GraphQLClient } from "graphql-request";
-import { ContractNames } from "@aragon/osx-commons-configs";
+import {
+  FrameworkContractsNames,
+  NonFrameworkContractsNames,
+} from "@aragon/osx-commons-configs";
 
 export type Web3ContextParams =
   & {
-    [index in ContractNames]?: string;
+    [index in FrameworkContractsNames]?: string;
+  }
+  & {
+    [index in NonFrameworkContractsNames]?: string;
   }
   & {
     /** Defaults to mainnet */
@@ -28,7 +34,10 @@ export type GraphQLContextParams = {
 
 export type Web3ContextState =
   & {
-    [index in ContractNames]: string;
+    [index in FrameworkContractsNames]: string;
+  }
+  & {
+    [index in NonFrameworkContractsNames]?: string;
   }
   & {
     network: Network;

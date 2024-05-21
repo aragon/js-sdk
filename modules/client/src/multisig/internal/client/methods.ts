@@ -75,8 +75,9 @@ import {
 } from "@aragon/sdk-client-common";
 import { INSTALLATION_ABI, UPDATE_ABI } from "../constants";
 import {
-  ContractNames,
+  FrameworkContractsNames,
   getNetworkNameByAlias,
+  NonFrameworkContractsNames,
 } from "@aragon/osx-commons-configs";
 
 /**
@@ -260,7 +261,9 @@ export class MultisigClientMethods extends ClientCore
     // Check params with yup
     yield* prepareGenericInstallation(this.web3, {
       daoAddressOrEns: params.daoAddressOrEns,
-      pluginRepo: this.web3.getAddress(ContractNames.MULTISIG_REPO_PROXY),
+      pluginRepo: this.web3.getAddress(
+        NonFrameworkContractsNames.MULTISIG_REPO_PROXY,
+      ),
       version: params.versionTag,
       installationAbi: INSTALLATION_ABI,
       installationParams: [
@@ -271,7 +274,7 @@ export class MultisigClientMethods extends ClientCore
         ],
       ],
       pluginSetupProcessorAddress: this.web3.getAddress(
-        ContractNames.PLUGIN_SETUP_PROCESSOR,
+        FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR,
       ),
     });
   }
@@ -287,11 +290,13 @@ export class MultisigClientMethods extends ClientCore
   ): AsyncGenerator<PrepareUpdateStepValue> {
     yield* prepareGenericUpdate(this.web3, this.graphql, {
       ...params,
-      pluginRepo: this.web3.getAddress(ContractNames.MULTISIG_REPO_PROXY),
+      pluginRepo: this.web3.getAddress(
+        NonFrameworkContractsNames.MULTISIG_REPO_PROXY,
+      ),
       updateAbi: UPDATE_ABI[params.newVersion.build] ||
         params.updateAbi || [],
       pluginSetupProcessorAddress: this.web3.getAddress(
-        ContractNames.PLUGIN_SETUP_PROCESSOR,
+        FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR,
       ),
     });
   }
@@ -383,7 +388,7 @@ export class MultisigClientMethods extends ClientCore
    *     - limit = 10
    *     - skip = 0
    *     - direction = SortDirection.ASC
-   *     - sortBy = MembersSortBy.ADDRESS   
+   *     - sortBy = MembersSortBy.ADDRESS
    * @return {Promise<string[]>}
    * @memberof MultisigClientMethods
    */

@@ -10,8 +10,9 @@ import { Client as IpfsClient } from "@aragon/sdk-ipfs";
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { GraphQLClient } from "graphql-request";
 import {
-  ContractNames,
   contracts,
+  FrameworkContractsNames,
+  NonFrameworkContractsNames,
   SupportedNetworks,
 } from "@aragon/osx-commons-configs";
 
@@ -40,10 +41,12 @@ describe("Context instances", () => {
     expect(context).toBeInstanceOf(TestContext);
     expect(context.network.name).toBe("homestead");
     expect(context.network.chainId).toBe(1);
-    expect(context.getAddress(ContractNames.DAO_FACTORY)).toBe(
+    expect(context.getAddress(FrameworkContractsNames.DAO_FACTORY)).toBe(
       contracts.mainnet["v1.3.0"]?.DAOFactory.address,
     );
-    expect(context.getAddress(ContractNames.ENS_REGISTRY)).toBe(context.network.ensAddress);
+    expect(context.getAddress(NonFrameworkContractsNames.ENS_REGISTRY)).toBe(
+      context.network.ensAddress,
+    );
     expect(context.gasFeeEstimationFactor).toBe(0.625);
     expect(context.web3Providers.length).toBe(0);
     expect(context.ipfs.length).toBe(
@@ -68,10 +71,12 @@ describe("Context instances", () => {
     expect(context).toBeInstanceOf(TestContext);
     expect(context.network.name).toBe("homestead");
     expect(context.network.chainId).toBe(1);
-    expect(context.getAddress(ContractNames.DAO_FACTORY)).toBe(
+    expect(context.getAddress(FrameworkContractsNames.DAO_FACTORY)).toBe(
       contextParams.DAOFactory,
     );
-    expect(context.getAddress(ContractNames.ENS_REGISTRY)).toBe(context.network.ensAddress);
+    expect(context.getAddress(NonFrameworkContractsNames.ENS_REGISTRY)).toBe(
+      context.network.ensAddress,
+    );
     expect(context.gasFeeEstimationFactor).toBe(
       contextParams.gasFeeEstimationFactor,
     );
@@ -102,7 +107,9 @@ describe("Context instances", () => {
     expect(context.network.name).toEqual("goerli");
     expect(context.network.chainId).toEqual(5);
     expect(context.signer).toBeInstanceOf(Wallet);
-    expect(context.getAddress(ContractNames.DAO_FACTORY)).toEqual("0x2345");
+    expect(context.getAddress(FrameworkContractsNames.DAO_FACTORY)).toEqual(
+      "0x2345",
+    );
     context.web3Providers?.map((provider) =>
       expect(provider).toBeInstanceOf(JsonRpcProvider)
     );
@@ -122,10 +129,12 @@ describe("Context instances", () => {
     expect(context).toBeInstanceOf(TestContext);
     expect(context.network.name).toBe("goerli");
     expect(context.network.chainId).toBe(5);
-    expect(context.getAddress(ContractNames.DAO_FACTORY)).toBe(
+    expect(context.getAddress(FrameworkContractsNames.DAO_FACTORY)).toBe(
       contracts.goerli["v1.3.0"]?.DAOFactory.address,
     );
-    expect(context.getAddress(ContractNames.ENS_REGISTRY)).toBe(context.network.ensAddress);
+    expect(context.getAddress(NonFrameworkContractsNames.ENS_REGISTRY)).toBe(
+      context.network.ensAddress,
+    );
     expect(context.gasFeeEstimationFactor).toBe(0.625);
     expect(context.web3Providers.length).toBe(1);
     expect(context.ipfs.length).toBe(
@@ -149,10 +158,10 @@ describe("Context instances", () => {
     });
     expect(context.network.name).toBe("matic");
     expect(context.network.chainId).toBe(137);
-    expect(context.getAddress(ContractNames.DAO_FACTORY)).toBe(
+    expect(context.getAddress(FrameworkContractsNames.DAO_FACTORY)).toBe(
       contracts.polygon["v1.3.0"]?.DAOFactory.address,
     );
-    expect(context.getAddress(ContractNames.ENS_REGISTRY)).toBe(
+    expect(context.getAddress(NonFrameworkContractsNames.ENS_REGISTRY)).toBe(
       contracts.polygon["v1.3.0"]?.ENSRegistry?.address,
     );
     expect(context.gasFeeEstimationFactor).toBe(0.625);
@@ -182,10 +191,10 @@ describe("Context instances", () => {
     });
     expect(context.network.name).toBe("matic");
     expect(context.network.chainId).toBe(137);
-    expect(context.getAddress(ContractNames.DAO_FACTORY)).toBe(
+    expect(context.getAddress(FrameworkContractsNames.DAO_FACTORY)).toBe(
       contracts.polygon["v1.3.0"]?.DAOFactory.address,
     );
-    expect(context.getAddress(ContractNames.ENS_REGISTRY)).toBe(
+    expect(context.getAddress(NonFrameworkContractsNames.ENS_REGISTRY)).toBe(
       contracts.polygon["v1.3.0"]?.ENSRegistry?.address,
     );
     expect(context.gasFeeEstimationFactor).toBe(0.625);
@@ -229,10 +238,12 @@ describe("Context instances", () => {
     expect(context).toBeInstanceOf(TestContext);
     expect(context.network.name).toBe("matic");
     expect(context.network.chainId).toBe(137);
-    expect(context.getAddress(ContractNames.DAO_FACTORY)).toBe(
+    expect(context.getAddress(FrameworkContractsNames.DAO_FACTORY)).toBe(
       contracts.polygon["v1.3.0"]?.DAOFactory.address,
     );
-    expect(context.getAddress(ContractNames.ENS_REGISTRY)).toBe(ADDRESS_ONE);
+    expect(context.getAddress(NonFrameworkContractsNames.ENS_REGISTRY)).toBe(
+      ADDRESS_ONE,
+    );
     expect(context.gasFeeEstimationFactor).toBe(0.625);
     expect(context.web3Providers.length).toBe(0);
     expect(context.ipfs.length).toBe(
@@ -280,10 +291,10 @@ describe("Context instances", () => {
         );
       })
     );
-    expect(context.getAddress(ContractNames.DAO_FACTORY)).toEqual(
+    expect(context.getAddress(FrameworkContractsNames.DAO_FACTORY)).toEqual(
       contracts.polygon["v1.3.0"]?.DAOFactory.address,
     );
-    expect(context.getAddress(ContractNames.ENS_REGISTRY)).toEqual(
+    expect(context.getAddress(NonFrameworkContractsNames.ENS_REGISTRY)).toEqual(
       contracts.polygon["v1.3.0"]?.ENSRegistry?.address,
     );
   });
@@ -296,10 +307,10 @@ describe("Context instances", () => {
     expect(context).toBeInstanceOf(TestContext);
     expect(context.network.name).toBe("baseGoerli");
     expect(context.network.chainId).toBe(84531);
-    expect(context.getAddress(ContractNames.DAO_FACTORY)).toBe(
+    expect(context.getAddress(FrameworkContractsNames.DAO_FACTORY)).toBe(
       contracts.baseGoerli["v1.3.0"]?.DAOFactory.address,
     );
-    expect(context.getAddress(ContractNames.ENS_REGISTRY)).toBe(
+    expect(context.getAddress(NonFrameworkContractsNames.ENS_REGISTRY)).toBe(
       contracts.baseGoerli["v1.3.0"]?.ENSRegistry?.address,
     );
     expect(context.gasFeeEstimationFactor).toBe(0.625);
@@ -312,7 +323,7 @@ describe("Context instances", () => {
       expect(nw.name).toEqual("baseGoerli");
       expect(nw.ensAddress).toEqual(
         contracts.baseGoerli["v1.3.0"]?.ENSRegistry?.address,
-        );
+      );
     }
   });
 });

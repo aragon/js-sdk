@@ -77,7 +77,11 @@ import {
   UnsupportedNetworkError,
 } from "@aragon/sdk-client-common";
 import { INSTALLATION_ABI, UPDATE_ABI } from "../constants";
-import { ContractNames, getNetworkByAlias } from "@aragon/osx-commons-configs";
+import {
+  FrameworkContractsNames,
+  getNetworkByAlias,
+  NonFrameworkContractsNames,
+} from "@aragon/osx-commons-configs";
 
 /**
  * Methods module the SDK Address List Client
@@ -259,7 +263,7 @@ export class AddresslistVotingClientMethods extends ClientCore
     yield* prepareGenericInstallation(this.web3, {
       daoAddressOrEns: params.daoAddressOrEns,
       pluginRepo: this.web3.getAddress(
-        ContractNames.ADDRESSLIST_VOTING_REPO_PROXY,
+        NonFrameworkContractsNames.ADDRESSLIST_VOTING_REPO_PROXY,
       ),
       version: params.versionTag,
       installationAbi: INSTALLATION_ABI,
@@ -268,7 +272,7 @@ export class AddresslistVotingClientMethods extends ClientCore
         params.settings.addresses,
       ],
       pluginSetupProcessorAddress: this.web3.getAddress(
-        ContractNames.PLUGIN_SETUP_PROCESSOR,
+        FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR,
       ),
     });
   }
@@ -285,12 +289,12 @@ export class AddresslistVotingClientMethods extends ClientCore
     yield* prepareGenericUpdate(this.web3, this.graphql, {
       ...params,
       pluginRepo: this.web3.getAddress(
-        ContractNames.ADDRESSLIST_VOTING_REPO_PROXY,
+        NonFrameworkContractsNames.ADDRESSLIST_VOTING_REPO_PROXY,
       ),
       updateAbi: UPDATE_ABI[params.newVersion.build] ||
         params.updateAbi || [],
       pluginSetupProcessorAddress: this.web3.getAddress(
-        ContractNames.PLUGIN_SETUP_PROCESSOR,
+        FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR,
       ),
     });
   }
@@ -347,7 +351,7 @@ export class AddresslistVotingClientMethods extends ClientCore
    *     - limit = 10
    *     - skip = 0
    *     - direction = SortDirection.ASC
-   *     - sortBy = MembersSortBy.ADDRESS   
+   *     - sortBy = MembersSortBy.ADDRESS
    * @return {Promise<string[]>}
    * @memberof AddresslistVotingClientMethods
    */

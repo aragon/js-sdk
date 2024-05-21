@@ -14,7 +14,10 @@ import {
   prepareGenericUpdateEstimation,
   SizeMismatchError,
 } from "@aragon/sdk-client-common";
-import { ContractNames } from "@aragon/osx-commons-configs";
+import {
+  FrameworkContractsNames,
+  NonFrameworkContractsNames,
+} from "@aragon/osx-commons-configs";
 /**
  * Estimation module the SDK Address List Client
  */
@@ -125,9 +128,11 @@ export class MultisigClientEstimation extends ClientCore
     return await prepareGenericUpdateEstimation(this.web3, this.graphql, {
       ...params,
       pluginSetupProcessorAddress: this.web3.getAddress(
-        ContractNames.PLUGIN_SETUP_PROCESSOR,
+        FrameworkContractsNames.PLUGIN_SETUP_PROCESSOR,
       ),
-      pluginRepo: this.web3.getAddress(ContractNames.MULTISIG_REPO_PROXY),
+      pluginRepo: this.web3.getAddress(
+        NonFrameworkContractsNames.MULTISIG_REPO_PROXY,
+      ),
     });
   }
 }

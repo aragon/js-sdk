@@ -6,7 +6,11 @@ import { JsonRpcProvider } from "@ethersproject/providers";
 import { Client as IpfsClient, PinResponse } from "@aragon/sdk-ipfs";
 import { GraphQLClient } from "graphql-request";
 import { GasFeeEstimation } from "../types";
-import { ContractNames, SupportedNetworks } from "@aragon/osx-commons-configs";
+import {
+  FrameworkContractsNames,
+  NonFrameworkContractsNames,
+  SupportedNetworks,
+} from "@aragon/osx-commons-configs";
 
 export interface IClientWeb3Core {
   shiftProvider: () => void;
@@ -21,7 +25,9 @@ export interface IClientWeb3Core {
     address: string,
     abi: ContractInterface,
   ) => Contract & T;
-  getAddress: (addressName: ContractNames) => string;
+  getAddress: (
+    addressName: FrameworkContractsNames | NonFrameworkContractsNames,
+  ) => string;
   getApproximateGasFee: (estimatedFee: bigint) => Promise<GasFeeEstimation>;
 }
 export interface IClientIpfsCore {
