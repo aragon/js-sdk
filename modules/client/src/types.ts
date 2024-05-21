@@ -36,7 +36,7 @@ export type DaoDetails = {
   address: string;
   ensDomain: string;
   metadata: DaoMetadata;
-  metadataHash: string;
+  metadataHash?: string;
   creationDate: Date;
   plugins: InstalledPluginListItem[];
 };
@@ -49,7 +49,7 @@ export type DaoListItem = {
     description: string;
     avatar?: string;
   };
-  metadataHash: string;
+  metadataHash?: string;
   plugins: InstalledPluginListItem[];
 };
 

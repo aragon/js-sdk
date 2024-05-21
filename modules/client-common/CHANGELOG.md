@@ -19,6 +19,10 @@ TEMPLATE:
 
 ## [UPCOMING]
 
+- Make `metadataHash` optional in proposal and dao objects.
+
+## [1.15.2]
+
 - Added `metadataHash` field to proposal and dao objects.
 
 ## [1.15.0]
