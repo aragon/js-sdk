@@ -19,6 +19,13 @@ TEMPLATE:
 
 ## [UPCOMING]
 
+## [1.17.0]
+
+- Add support for zkSync mainnet network
+
+
+## [1.16.0]
+
 - Add support for zkSync sepolia network
 
 ## [1.15.2]
