@@ -29,6 +29,7 @@ import {
   RemoveAddressesParams,
   UpdateMultisigVotingSettingsParams,
 } from "../types";
+import { Approver } from "./types";
 
 // Multisig
 export interface IMultisigClientMethods {
@@ -54,7 +55,7 @@ export interface IMultisigClientMethods {
     addressOrEns: string,
     blockNumber?: number,
   ) => Promise<MultisigVotingSettings>;
-  getMembers: (params: MembersQueryParams) => Promise<string[]>;
+  getMembers: (params: MembersQueryParams) => Promise<Approver[]>;
   getProposal: (proposalId: string) => Promise<MultisigProposal | null>;
   getProposals: (
     params: ProposalQueryParams,
