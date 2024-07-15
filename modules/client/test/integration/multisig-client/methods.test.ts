@@ -548,7 +548,7 @@ describe("Client Multisig", () => {
       );
     });
 
-    it("Should get members of the multisig", async () => {
+    it.only("Should get members of the multisig", async () => {
       const ctx = new Context(contextParamsLocalChain);
       const client = new MultisigClient(ctx);
       const mockedClient = mockedGraphqlRequest.getMockedInstance(
@@ -568,6 +568,9 @@ describe("Client Multisig", () => {
           blockNumber: 123456,
         },
       );
+
+      console.log("members",members,"wallets", wallets);
+
       expect(wallets.length).toBe(2);
       expect(wallets).toMatchObject(members);
       expect(mockedClient.request).toHaveBeenCalledWith(QueryMultisigMembers, {

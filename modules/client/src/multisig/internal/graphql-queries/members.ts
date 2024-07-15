@@ -11,6 +11,7 @@ query MultisigMembers($where: MultisigApprover_filter!, $block: Block_height, $l
     orderDirection: $direction
   ) {
     address
+    isActive
   }
 }
 `;

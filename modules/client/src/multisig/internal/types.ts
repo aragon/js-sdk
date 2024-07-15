@@ -17,6 +17,11 @@ export type SubgraphMultisigProposal = SubgraphMultisigProposalBase & {
   creationBlockNumber: string;
 };
 
+export type Approver = {
+  address: string,
+  isActive: boolean
+}
+
 export type SubgraphMultisigApproversListItem = {
   approver: { address: string };
 };

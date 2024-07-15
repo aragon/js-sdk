@@ -12,6 +12,7 @@ import {
   MultisigVotingSettings,
 } from "../../types";
 import {
+  Approver,
   SubgraphMultisigProposal,
   SubgraphMultisigProposalListItem,
   SubgraphMultisigVotingSettings,
@@ -25,7 +26,6 @@ import {
   ProposalCreationStepValue,
   ProposalQueryParams,
   ProposalSortBy,
-  SubgraphMembers,
 } from "../../../client-common";
 import { Multisig__factory } from "@aragon/osx-ethers";
 import {
@@ -399,7 +399,7 @@ export class MultisigClientMethods extends ClientCore
     skip = 0,
     direction = SortDirection.ASC,
     sortBy = MembersSortBy.ADDRESS,
-  }: MembersQueryParams): Promise<string[]> {
+  }: MembersQueryParams): Promise<Approver[]> {
     // TODO
     // update this with yup validation
     if (!isAddress(pluginAddress)) {
@@ -415,13 +415,19 @@ export class MultisigClientMethods extends ClientCore
       sortBy,
     };
     const name = "Multisig members";
-    type T = { multisigApprovers: SubgraphMembers };
+    type T = { multisigApprovers: any };
     const { multisigApprovers } = await this.graphql.request<T>({
       query,
       params,
       name,
     });
-    return multisigApprovers.map((member) => member.address);
+
+    
+
+    return multisigApprovers.map((member: any) => ({
+      address: member.address,
+      isActive: member.isActive,
+    }));
   }
 
   /**
