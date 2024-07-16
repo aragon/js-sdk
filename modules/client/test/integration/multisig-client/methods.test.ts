@@ -558,7 +558,7 @@ describe("Client Multisig", () => {
 
       mockedClient.request.mockResolvedValueOnce({
         multisigApprovers: members.map((member) => {
-          return { address: member };
+          return { address: member, isActive: true };
         }),
       });
 
