@@ -25,7 +25,6 @@ import {
   ProposalCreationStepValue,
   ProposalQueryParams,
   ProposalSortBy,
-  SubgraphMembers,
 } from "../../../client-common";
 import { Multisig__factory } from "@aragon/osx-ethers";
 import {
@@ -415,13 +414,13 @@ export class MultisigClientMethods extends ClientCore
       sortBy,
     };
     const name = "Multisig members";
-    type T = { multisigApprovers: SubgraphMembers };
+    type T = { multisigApprovers: any };
     const { multisigApprovers } = await this.graphql.request<T>({
       query,
       params,
       name,
     });
-    return multisigApprovers.map((member) => member.address);
+    return multisigApprovers.filter((member: any) => member.isActive).map((member: any) => {member.address});
   }
 
   /**
