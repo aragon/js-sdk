@@ -19,6 +19,11 @@ TEMPLATE:
 
 ## [UPCOMING]
 
+## [1.25.1]
+
+### Fixed
+- Return only the active multisig members.
+
 ## [1.25.0]
 
 - Add support for zkSync mainnet network
