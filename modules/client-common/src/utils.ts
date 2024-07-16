@@ -517,6 +517,6 @@ export function getDefaultIpfsNodes(network: SupportedNetworks) {
 export function getDefaultGraphqlNodes(network: SupportedNetworks) {
   return [{
     url:
-      `https://subgraph.satsuma-prod.com/qHR2wGfc5RLi6/aragon/osx-${network}/version/v1.4.0/api`,
+      `https://subgraph.satsuma-prod.com/0141525010d2/aragon/osx-${network}/version/v1.4.0/api`,
   }];
 }

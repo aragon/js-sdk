@@ -36,7 +36,7 @@ const contextParamsMainnet: ContextParams = {
   ],
   graphqlNodes: [{
     url:
-      "https://api.thegraph.com/subgraphs/name/aragon/aragon-zaragoza-goerli",
+      "https://subgraph.satsuma-prod.com/0141525010d2/aragon/osx-sepolia/version/1.4.3/api",
   }],
 };
 

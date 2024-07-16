@@ -420,7 +420,7 @@ export class MultisigClientMethods extends ClientCore
       params,
       name,
     });
-    return multisigApprovers.filter((member: any) => member.isActive).map((member: any) => {member.address});
+    return multisigApprovers.filter((member: any) => member.isActive).map((member: any) => member.address);
   }
 
   /**
