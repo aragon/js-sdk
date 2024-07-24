@@ -19,7 +19,7 @@ TEMPLATE:
 
 ## [UPCOMING]
 
-## [1.26.1]
+## [1.26.0]
 
 ### Changed
 - Add `includeMetadata` optional parameter to `getPlugin` and `getPlugins` functions which defaults to `true`.
