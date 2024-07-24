@@ -79,6 +79,7 @@ export enum PluginSortBy {
 export type PluginQueryParams = Pagination & {
   sortBy?: PluginSortBy;
   subdomain?: string;
+  includeMetadata?: boolean;
 };
 
 /* Plugin repos */
