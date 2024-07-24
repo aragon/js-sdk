@@ -77,7 +77,7 @@ export const contextParams: ContextParams = {
   // They will switch depending on the network (production, development)
   graphqlNodes: [
     {
-      url: "https://subgraph.satsuma-prod.com/aragon/core-goerli/api",
+      url: "https://subgraph.satsuma-prod.com/qHR2wGfc5RLi6/aragon/osx-goerli/api",
     },
   ],
 };
