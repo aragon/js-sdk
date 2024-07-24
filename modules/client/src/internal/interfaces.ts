@@ -78,9 +78,9 @@ export interface IClientMethods {
   /** Retrieves metadata for many daos */
   getDaos: (params: DaoQueryParams) => Promise<DaoListItem[]>;
   /** retrieves the plugin details given an address, release and build */
-  getPlugin: (pluginAddress: string) => Promise<PluginRepo>;
+  getPlugin: (pluginAddress: string, includeMetadata?: boolean) => Promise<PluginRepo>;
   /** Retrieves the list of plugins available on the PluginRegistry */
-  getPlugins: (params?: PluginQueryParams) => Promise<PluginRepoListItem[]>;
+  getPlugins: (params?: PluginQueryParams, includeMetadata?: boolean) => Promise<PluginRepoListItem[]>;
   /** Prepare uninstallation of a plugin */
   prepareUninstallation: (
     params: PrepareUninstallationParams,

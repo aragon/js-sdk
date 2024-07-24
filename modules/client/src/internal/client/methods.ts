@@ -966,7 +966,16 @@ export class ClientMethods extends ClientCore implements IClientMethods {
 
   private async getPluginRepo(
     pluginRepo: SubgraphPluginRepo,
+    inlcudeMetadata?: boolean,
   ): Promise<PluginRepo> {
+    if (!inlcudeMetadata) {
+      return toPluginRepo(
+        pluginRepo,
+        EMPTY_RELEASE_METADATA_LINK,
+        EMPTY_BUILD_METADATA_LINK
+      );
+    }
+
     let releaseMetadata: PluginRepoReleaseMetadata;
     // releases are ordered son the index 0 will be the latest
     const releaseIpfsUri = pluginRepo?.releases[0]?.metadata;
@@ -1006,6 +1015,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
    *     - direction = SortDirection.ASC
    *     - sortBy = PluginSortBy.SUBDOMAIN
    *     - subdomain
+   * @param {boolean} [includeMetadata=true]
    * @return {(Promise<PluginRepo[] | null>)}
    * @memberof ClientMethods
    */
@@ -1015,6 +1025,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
     direction = SortDirection.ASC,
     sortBy = PluginSortBy.SUBDOMAIN,
     subdomain,
+    includeMetadata = true,
   }: PluginQueryParams = {}): Promise<PluginRepoListItem[]> {
     await PluginQuerySchema.strict().validate({
       limit,
@@ -1046,7 +1057,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
     return Promise.all(
       pluginRepos.map(
         (pluginRepo: SubgraphPluginRepoListItem) => {
-          return this.getPluginRepo(pluginRepo);
+          return this.getPluginRepo(pluginRepo, includeMetadata);
         },
       ),
     );
@@ -1055,10 +1066,14 @@ export class ClientMethods extends ClientCore implements IClientMethods {
    * Get plugin details given an address, release and build
    *
    * @param {string} pluginAddress
+   * @param {boolean} [includeMetadata=true]
    * @return {Promise<PluginRepo>}
    * @memberof ClientMethods
    */
-  public async getPlugin(pluginAddress: string): Promise<PluginRepo> {
+  public async getPlugin(
+    pluginAddress: string,
+    includeMetadata: boolean = true
+  ): Promise<PluginRepo> {
     await AddressOrEnsSchema.strict().validate(pluginAddress);
     const name = "plugin version";
     const query = QueryPlugin;
@@ -1069,7 +1084,7 @@ export class ClientMethods extends ClientCore implements IClientMethods {
       name,
     });
     // get release metadata
-    return this.getPluginRepo(pluginRepo);
+    return this.getPluginRepo(pluginRepo, includeMetadata);
   }
   /**
    * Returns the protocol version of a contract
