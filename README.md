@@ -72,7 +72,7 @@ version5. Although version 6 may work, we suggest using the same version5 for
 compatibility:
 
 ```sh
-npm install @aragon/sdk-client @ethers@5
+npm install @aragon/sdk-client ethers@5
 ```
 
 <br/>
