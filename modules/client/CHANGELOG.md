@@ -115,6 +115,7 @@ TEMPLATE:
 ### Fixed
 
 - Added missing security check that checks that the `to` address in the permission actions is the DAO address
+- Fix isMember function for tokenVoting DAOs by reversing the query id order
 
 ## [1.19.2]
 
